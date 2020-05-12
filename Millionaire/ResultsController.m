@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     self.dateFormatter = [[NSDateFormatter alloc] init];
-    self.dateFormatter.dateFormat = @"dd.mm.yy hh-mm";
+    self.dateFormatter.dateFormat = @"dd.MM.yy hh-mm";
 }
 
 - (IBAction)backButton:(id)sender {
