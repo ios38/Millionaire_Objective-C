@@ -29,10 +29,13 @@
 
 @property (weak, nonatomic) id <GameDelegate> gameDelegate;
 
-@property (assign,nonatomic)int questionsType;
-@property (strong,nonatomic)QuestionAndAnswers *questionAndAnswers;
-@property (strong,nonatomic)NSString *trueAnswer;
-@property (assign,nonatomic)NSUInteger trueAnswersCount;
+@property (assign,nonatomic) int questionsType;
+@property (strong,nonatomic) QuestionAndAnswers *questionAndAnswers;
+@property (strong,nonatomic) NSString *trueAnswer;
+@property (assign,nonatomic) NSUInteger trueAnswersCount;
+
+@property (strong, nonatomic) NSTimer *countdownTimer;
+@property (assign, nonatomic) NSInteger currentCountdown;
 
 @end
 
@@ -62,6 +65,8 @@
         //[self shuffle:array];
         //self.questionAndAnswers.answers = array;
         self.QuestionLabel.text = self.questionAndAnswers.question;
+        self.currentCountdown = 5;
+        [self startTimer];
         [self.tableView reloadData];
     }
       onFailure:^(NSError *error) {
@@ -86,18 +91,20 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
-    
+    dispatch_time_t delayAfterTrue = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
+    dispatch_time_t delayAfterFalse = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     tableView.allowsSelection = NO;
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
     if (cell.textLabel.text == self.trueAnswer) {
         //NSLog(@"Правильный ответ!");
+        [self.countdownTimer invalidate];
         self.trueAnswersCount++;
         //cell.backgroundColor = [UIColor trueAnswerColor];
         cell.backgroundColor = [UIColor greenColor];
-        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+        dispatch_after(delayAfterTrue, dispatch_get_main_queue(), ^{
             cell.backgroundColor = [UIColor blackColor];
             [self getQuestion];
             tableView.allowsSelection = YES;
@@ -105,14 +112,11 @@
 
     } else {
         //NSLog(@"Неправильный ответ!");
+        [self.countdownTimer invalidate];
         cell.backgroundColor = [UIColor redColor];
-        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-            [self.gameDelegate didEndGameWithResult:self.trueAnswersCount];
-            //cell.backgroundColor = [UIColor blackColor];
-            //tableView.allowsSelection = YES;
-            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-                [self dismissViewControllerAnimated:NO completion:nil];
-            });
+        dispatch_after(delayAfterFalse, dispatch_get_main_queue(), ^{
+            cell.backgroundColor = [UIColor blackColor];
+            [self gameCompletion];
         });
     }
 }
@@ -145,6 +149,31 @@
     self.questionAndAnswers.answers = [NSMutableArray arrayWithObjects:self.trueAnswer,randomAnswer,nil];
     //добавить shuffle
     [self.tableView reloadData];
+}
+
+-(void) gameCompletion {
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.backgroundColor = [UIColor greenColor];
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+        cell.backgroundColor = [UIColor blackColor];
+        [self.gameDelegate didEndGameWithResult:self.trueAnswersCount];
+        [self dismissViewControllerAnimated:NO completion:nil];
+    });
+}
+
+-(void) startTimer {
+    self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleCountdown) userInfo:nil repeats:true];
+}
+
+-(void) handleCountdown {
+    NSLog(@"Timer: %ld", (long)self.currentCountdown);
+    self.currentCountdown -= 1;
+    if (self.currentCountdown == -1) {
+        [self.countdownTimer invalidate];
+        [self gameCompletion];
+    }
 }
 
 @end
