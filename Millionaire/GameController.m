@@ -13,6 +13,7 @@
 #import "GameSession.h"
 #import "QuestionStrategy.h"
 #import "TimeStrategy.h"
+#import "GameDifficultyFacade.h"
 
 @implementation UIColor (Layout)
 
@@ -40,8 +41,9 @@
 @property (strong, nonatomic) NSTimer *countdownTimer;
 @property (assign, nonatomic) NSInteger currentCountdown;
 
-@property (strong, nonatomic) QuestionStrategy *questionStrategy;
-@property (strong, nonatomic) TimeStrategy *timeStrategy;
+//@property (strong, nonatomic) QuestionStrategy *questionStrategy;
+//@property (strong, nonatomic) TimeStrategy *timeStrategy;
+@property (strong, nonatomic) GameDifficultyFacade *gameDifficulty;
 
 @property (strong, nonatomic) NSNotificationCenter *nc;
 
@@ -53,8 +55,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.questionStrategy = [[QuestionStrategy alloc] init];
-    self.timeStrategy = [[TimeStrategy alloc] init];
+    //self.questionStrategy = [[QuestionStrategy alloc] init];
+    //self.timeStrategy = [[TimeStrategy alloc] init];
+    self.gameDifficulty = [[GameDifficultyFacade alloc] init];
     self.nc = [NSNotificationCenter defaultCenter];
     self.questionAndAnswers = [[QuestionAndAnswers alloc] init];
     self.QuestionLabel.text = self.questionAndAnswers.question;
@@ -73,7 +76,7 @@
 #pragma mark - API
 
 - (void) getQuestion {
-    NSUInteger questionType = [self.questionStrategy getQuestionType];
+    NSUInteger questionType = [self.gameDifficulty getQuestionType];
     self.questionDifficulty.text = [NSString stringWithFormat:@"Уровень сложности: %lu", (unsigned long)questionType];
     [[NetworkService shared] getQuestionWithType:questionType
       onSuccess:^(QuestionAndAnswers *questionAndAnswers) {
@@ -122,9 +125,8 @@
     if (cell.textLabel.text == self.trueAnswer) {
         //NSLog(@"Правильный ответ!");
         [self.countdownTimer invalidate];
-        NSUInteger answerTime = [self.timeStrategy getCountdownDuration] - self.currentCountdown;
+        NSUInteger answerTime = [self.gameDifficulty getCountdownDuration] - self.currentCountdown;
         [self.gameDelegate trueAnswerWithTime:answerTime];
-        //self.trueAnswersCount++;
         //cell.backgroundColor = [UIColor trueAnswerColor];
         cell.backgroundColor = [UIColor greenColor];
         dispatch_after(delayAfterTrue, dispatch_get_main_queue(), ^{
@@ -143,13 +145,6 @@
         });
     }
 }
-
-#pragma mark - Setters
-/*
-- (void)setTrueAnswersCount:(NSUInteger)trueAnswersCount {
-    _trueAnswersCount = trueAnswersCount;
-    self.trueAnswersCountLabel.text = [NSString stringWithFormat:@"Правильных ответов: %lu", (unsigned long)self.trueAnswersCount];
-}*/
 
 #pragma mark - Notifications
 
@@ -189,7 +184,7 @@
 }
 
 -(void) startTimer {
-    self.currentCountdown = [self.timeStrategy getCountdownDuration];
+    self.currentCountdown = [self.gameDifficulty getCountdownDuration];
     self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleCountdown) userInfo:nil repeats:true];
 }
 

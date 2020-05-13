@@ -27,6 +27,7 @@
 		506ECA822467E9B90005469A /* GameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 506ECA812467E9B90005469A /* GameSettings.m */; };
 		50733A9E246AF42600B24AA8 /* QuestionStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50733A9D246AF42600B24AA8 /* QuestionStrategy.m */; };
 		50733AA4246B007200B24AA8 /* TimeStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50733AA3246B007200B24AA8 /* TimeStrategy.m */; };
+		50DF3F22246BFD690007760B /* GameDifficultyFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DF3F21246BFD690007760B /* GameDifficultyFacade.m */; };
 		B2AE653DA8A242FF52D48A34 /* Pods_Millionaire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F564F7F5266183C819D8BB9 /* Pods_Millionaire.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,8 @@
 		50733A9D246AF42600B24AA8 /* QuestionStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuestionStrategy.m; sourceTree = "<group>"; };
 		50733AA2246B007200B24AA8 /* TimeStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeStrategy.h; sourceTree = "<group>"; };
 		50733AA3246B007200B24AA8 /* TimeStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeStrategy.m; sourceTree = "<group>"; };
+		50DF3F20246BFD690007760B /* GameDifficultyFacade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameDifficultyFacade.h; sourceTree = "<group>"; };
+		50DF3F21246BFD690007760B /* GameDifficultyFacade.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameDifficultyFacade.m; sourceTree = "<group>"; };
 		5F564F7F5266183C819D8BB9 /* Pods_Millionaire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Millionaire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EE84A8EDFC205BDF57A8E8 /* Pods-Millionaire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Millionaire.debug.xcconfig"; path = "Target Support Files/Pods-Millionaire/Pods-Millionaire.debug.xcconfig"; sourceTree = "<group>"; };
 		F57659CFC3DACCF1FEB16011 /* Pods-Millionaire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Millionaire.release.xcconfig"; path = "Target Support Files/Pods-Millionaire/Pods-Millionaire.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 				50733A9D246AF42600B24AA8 /* QuestionStrategy.m */,
 				50733AA2246B007200B24AA8 /* TimeStrategy.h */,
 				50733AA3246B007200B24AA8 /* TimeStrategy.m */,
+				50DF3F20246BFD690007760B /* GameDifficultyFacade.h */,
+				50DF3F21246BFD690007760B /* GameDifficultyFacade.m */,
 			);
 			path = Patterns;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				506ECA6024656F130005469A /* NetworkService.m in Sources */,
 				50733A9E246AF42600B24AA8 /* QuestionStrategy.m in Sources */,
 				506ECA6124656F130005469A /* QuestionAndAnswers.m in Sources */,
+				50DF3F22246BFD690007760B /* GameDifficultyFacade.m in Sources */,
 				506ECA1224656E5D0005469A /* AppDelegate.m in Sources */,
 				506ECA2324656E5F0005469A /* main.m in Sources */,
 				506ECA7F2467DBD00005469A /* ResultsCaretaker.m in Sources */,

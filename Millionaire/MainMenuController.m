@@ -28,6 +28,7 @@
     
     [self.startButton addTarget:self action:@selector(startGameSession) forControlEvents:UIControlEventTouchUpInside];
     [self.resultsButton addTarget:self action:@selector(showResults) forControlEvents:UIControlEventTouchUpInside];
+    [self.difficultySegmentedControl setSelectedSegmentIndex:1];
 }
 
 - (Difficulty) selectedDifficulty {
