@@ -20,7 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol GameDelegate
 
-- (void) didEndGameWithResult: (NSUInteger) result;
+- (void) trueAnswer;
+- (void) didEndGame;
 
 @end
 

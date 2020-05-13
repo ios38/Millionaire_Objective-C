@@ -9,11 +9,19 @@
 #import "GameSession.h"
 #import "Game.h"
 
+
+@interface GameSession ()
+
+//@property (assign,nonatomic) NSUInteger trueAnswersCount;
+
+@end
+
 @implementation GameSession
 
 - (instancetype) init {
     self = [super init];
     if (self) {
+        self.trueAnswersCount = 0;
         NSLog(@"GameSession created");
     }
     return self;
@@ -32,9 +40,13 @@
     [mainMenuController presentViewController:gameController animated:NO completion:nil];
 }
 
-- (void) didEndGameWithResult: (NSUInteger) result {
-    NSLog(@"GameSession: didEndGameWithResult: %lu",(unsigned long)result);
-    [Game.shared endGameWithResult:result];
+- (void) trueAnswer {
+    self.trueAnswersCount += 1;
+}
+
+- (void) didEndGame {
+    NSLog(@"GameSession: didEndGame with result: %lu",(unsigned long)self.trueAnswersCount);
+    [Game.shared endGameWithResult:self.trueAnswersCount];
 }
 
 @end

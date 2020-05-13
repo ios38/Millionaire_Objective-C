@@ -11,7 +11,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum {
+    easy,medium,hard,insane
+} Difficulty;
+
 @interface GameSession : NSObject <GameDelegate>
+
+@property (assign,nonatomic) Difficulty difficulty;
+@property (assign,nonatomic) NSUInteger trueAnswersCount;
 
 -(void)startGame:(UIViewController *)mainMenuController;
 

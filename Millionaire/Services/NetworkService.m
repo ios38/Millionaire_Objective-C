@@ -1,5 +1,5 @@
 //
-//  ServerManager.m
+//  NetworkService.m
 //  Millionaire
 //
 //  Created by Maksim Romanov on 08.05.2020.
@@ -54,7 +54,8 @@
         }
 
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        NSLog(@"Error: %@", error);
+        //NSLog(@"Error: %@", error);
+        NSLog(@"error: %@", [error localizedDescription]);
         if (failure) {
             failure(error);
         }

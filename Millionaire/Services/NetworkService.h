@@ -1,5 +1,5 @@
 //
-//  ServerManager.h
+//  NetworkService.h
 //  Millionaire
 //
 //  Created by Maksim Romanov on 08.05.2020.

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		506ECA1224656E5D0005469A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 506ECA1124656E5D0005469A /* AppDelegate.m */; };
 		506ECA1524656E5D0005469A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 506ECA1424656E5D0005469A /* SceneDelegate.m */; };
-		506ECA1824656E5D0005469A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506ECA1724656E5D0005469A /* ViewController.m */; };
 		506ECA1B24656E5D0005469A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 506ECA1924656E5D0005469A /* Main.storyboard */; };
 		506ECA1D24656E5F0005469A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506ECA1C24656E5F0005469A /* Assets.xcassets */; };
 		506ECA2024656E5F0005469A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 506ECA1E24656E5F0005469A /* LaunchScreen.storyboard */; };
@@ -26,6 +25,8 @@
 		506ECA7C2467B6D80005469A /* GameResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 506ECA7B2467B6D80005469A /* GameResult.m */; };
 		506ECA7F2467DBD00005469A /* ResultsCaretaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 506ECA7E2467DBD00005469A /* ResultsCaretaker.m */; };
 		506ECA822467E9B90005469A /* GameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 506ECA812467E9B90005469A /* GameSettings.m */; };
+		50733A9E246AF42600B24AA8 /* QuestionStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50733A9D246AF42600B24AA8 /* QuestionStrategy.m */; };
+		50733AA4246B007200B24AA8 /* TimeStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50733AA3246B007200B24AA8 /* TimeStrategy.m */; };
 		B2AE653DA8A242FF52D48A34 /* Pods_Millionaire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F564F7F5266183C819D8BB9 /* Pods_Millionaire.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,8 +36,6 @@
 		506ECA1124656E5D0005469A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		506ECA1324656E5D0005469A /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		506ECA1424656E5D0005469A /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		506ECA1624656E5D0005469A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		506ECA1724656E5D0005469A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		506ECA1A24656E5D0005469A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		506ECA1C24656E5F0005469A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		506ECA1F24656E5F0005469A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -65,6 +64,10 @@
 		506ECA7E2467DBD00005469A /* ResultsCaretaker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResultsCaretaker.m; sourceTree = "<group>"; };
 		506ECA802467E9B90005469A /* GameSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSettings.h; sourceTree = "<group>"; };
 		506ECA812467E9B90005469A /* GameSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameSettings.m; sourceTree = "<group>"; };
+		50733A9C246AF42600B24AA8 /* QuestionStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuestionStrategy.h; sourceTree = "<group>"; };
+		50733A9D246AF42600B24AA8 /* QuestionStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuestionStrategy.m; sourceTree = "<group>"; };
+		50733AA2246B007200B24AA8 /* TimeStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeStrategy.h; sourceTree = "<group>"; };
+		50733AA3246B007200B24AA8 /* TimeStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeStrategy.m; sourceTree = "<group>"; };
 		5F564F7F5266183C819D8BB9 /* Pods_Millionaire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Millionaire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EE84A8EDFC205BDF57A8E8 /* Pods-Millionaire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Millionaire.debug.xcconfig"; path = "Target Support Files/Pods-Millionaire/Pods-Millionaire.debug.xcconfig"; sourceTree = "<group>"; };
 		F57659CFC3DACCF1FEB16011 /* Pods-Millionaire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Millionaire.release.xcconfig"; path = "Target Support Files/Pods-Millionaire/Pods-Millionaire.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,30 +115,20 @@
 			isa = PBXGroup;
 			children = (
 				506ECA1924656E5D0005469A /* Main.storyboard */,
-				506ECA712466D7290005469A /* Game.h */,
-				506ECA722466D7290005469A /* Game.m */,
-				506ECA742466D8540005469A /* GameSession.h */,
-				506ECA752466D8540005469A /* GameSession.m */,
 				506ECA62246581C60005469A /* MainMenuController.h */,
 				506ECA63246581C60005469A /* MainMenuController.m */,
 				506ECA66246585C80005469A /* GameController.h */,
 				506ECA67246585C80005469A /* GameController.m */,
 				506ECA772466DFC20005469A /* ResultsController.h */,
 				506ECA782466DFC20005469A /* ResultsController.m */,
-				506ECA7D2467DBD00005469A /* ResultsCaretaker.h */,
-				506ECA7E2467DBD00005469A /* ResultsCaretaker.m */,
-				506ECA5F24656F130005469A /* NetworkService.h */,
-				506ECA5C24656F130005469A /* NetworkService.m */,
-				506ECA6B24658E3F0005469A /* AnswerCell.h */,
-				506ECA6C24658E3F0005469A /* AnswerCell.m */,
-				506ECA6924658DFE0005469A /* AnswerCell.xib */,
 				506ECA65246582210005469A /* Models */,
+				50733A9B246AF29F00B24AA8 /* Patterns */,
+				50733A9A246AF21400B24AA8 /* Views */,
+				50733A99246AF1C900B24AA8 /* Services */,
 				506ECA1024656E5D0005469A /* AppDelegate.h */,
 				506ECA1124656E5D0005469A /* AppDelegate.m */,
 				506ECA1324656E5D0005469A /* SceneDelegate.h */,
 				506ECA1424656E5D0005469A /* SceneDelegate.m */,
-				506ECA1624656E5D0005469A /* ViewController.h */,
-				506ECA1724656E5D0005469A /* ViewController.m */,
 				506ECA1C24656E5F0005469A /* Assets.xcassets */,
 				506ECA1E24656E5F0005469A /* LaunchScreen.storyboard */,
 				506ECA2124656E5F0005469A /* Info.plist */,
@@ -147,6 +140,10 @@
 		506ECA65246582210005469A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				506ECA712466D7290005469A /* Game.h */,
+				506ECA722466D7290005469A /* Game.m */,
+				506ECA742466D8540005469A /* GameSession.h */,
+				506ECA752466D8540005469A /* GameSession.m */,
 				506ECA7A2467B6D80005469A /* GameResult.h */,
 				506ECA7B2467B6D80005469A /* GameResult.m */,
 				506ECA802467E9B90005469A /* GameSettings.h */,
@@ -155,6 +152,38 @@
 				506ECA5E24656F130005469A /* QuestionAndAnswers.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		50733A99246AF1C900B24AA8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				506ECA7D2467DBD00005469A /* ResultsCaretaker.h */,
+				506ECA7E2467DBD00005469A /* ResultsCaretaker.m */,
+				506ECA5F24656F130005469A /* NetworkService.h */,
+				506ECA5C24656F130005469A /* NetworkService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		50733A9A246AF21400B24AA8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				506ECA6B24658E3F0005469A /* AnswerCell.h */,
+				506ECA6C24658E3F0005469A /* AnswerCell.m */,
+				506ECA6924658DFE0005469A /* AnswerCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		50733A9B246AF29F00B24AA8 /* Patterns */ = {
+			isa = PBXGroup;
+			children = (
+				50733A9C246AF42600B24AA8 /* QuestionStrategy.h */,
+				50733A9D246AF42600B24AA8 /* QuestionStrategy.m */,
+				50733AA2246B007200B24AA8 /* TimeStrategy.h */,
+				50733AA3246B007200B24AA8 /* TimeStrategy.m */,
+			);
+			path = Patterns;
 			sourceTree = "<group>";
 		};
 		A8737745EBA168F4F5079910 /* Pods */ = {
@@ -282,8 +311,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				506ECA6024656F130005469A /* NetworkService.m in Sources */,
+				50733A9E246AF42600B24AA8 /* QuestionStrategy.m in Sources */,
 				506ECA6124656F130005469A /* QuestionAndAnswers.m in Sources */,
-				506ECA1824656E5D0005469A /* ViewController.m in Sources */,
 				506ECA1224656E5D0005469A /* AppDelegate.m in Sources */,
 				506ECA2324656E5F0005469A /* main.m in Sources */,
 				506ECA7F2467DBD00005469A /* ResultsCaretaker.m in Sources */,
@@ -292,6 +321,7 @@
 				506ECA1524656E5D0005469A /* SceneDelegate.m in Sources */,
 				506ECA792466DFC20005469A /* ResultsController.m in Sources */,
 				506ECA7C2467B6D80005469A /* GameResult.m in Sources */,
+				50733AA4246B007200B24AA8 /* TimeStrategy.m in Sources */,
 				506ECA822467E9B90005469A /* GameSettings.m in Sources */,
 				506ECA732466D7290005469A /* Game.m in Sources */,
 				506ECA6D24658E3F0005469A /* AnswerCell.m in Sources */,
