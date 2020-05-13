@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         self.question = @"Загружаю вопрос...";
-        NSArray *array = @[@"Ответ 1",@"Ответ 2",@"Ответ 3",@"Ответ 4"];
+        NSArray *array = @[@"",@"",@"",@""];
         self.answers = [NSMutableArray arrayWithArray:array];
     }
     return self;

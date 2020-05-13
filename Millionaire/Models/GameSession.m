@@ -33,10 +33,8 @@ NSString* const trueAnswersCountUserInfoKey =@"trueAnswersCountUserInfoKey";
     NSLog(@"GameSession deallocated");
 }
 
--(void)startGame:(UIViewController *)mainMenuController {
-
+-(void)startGame:(UIViewController *)mainMenuController {    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
     UIViewController *gameController = [storyboard instantiateViewControllerWithIdentifier:@"GameController"];
     gameController.modalPresentationStyle = UIModalPresentationFullScreen;
     [mainMenuController presentViewController:gameController animated:NO completion:nil];
@@ -55,10 +53,14 @@ NSString* const trueAnswersCountUserInfoKey =@"trueAnswersCountUserInfoKey";
     self.totalAnswersTime += answerTime;
 }
 
+- (CGFloat) averageAnswersTime {
+    return (CGFloat)_totalAnswersTime / (CGFloat)_trueAnswersCount;
+}
+
 - (void) didEndGame {
-    CGFloat averageTime = (CGFloat)self.totalAnswersTime / (CGFloat)self.trueAnswersCount;
+    //CGFloat averageAnswersTime = (CGFloat)self.totalAnswersTime / (CGFloat)self.trueAnswersCount;
     //NSLog(@"GameSession: didEndGame with result: %lu and average time: %f seconds",(unsigned long)self.trueAnswersCount, averageTime);
-    [Game.shared endGameWithResult:self.trueAnswersCount andTime:averageTime];
+    [Game.shared endGameWithResult:self.trueAnswersCount andTime:self.averageAnswersTime];
 }
 
 @end

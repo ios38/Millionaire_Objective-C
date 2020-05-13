@@ -25,7 +25,7 @@
     
     dispatch_once(&onceToken, ^{
         game = [[Game alloc] init];
-        NSLog(@"Game created");
+        //NSLog(@"Game created");
     });
     
     return game;
@@ -42,7 +42,6 @@
 }
 
 - (void)endGameWithResult:(NSUInteger)result andTime:(CGFloat)time {
-    NSLog(@"Game: endGameWithResult: %lu and average time: %f seconds",(unsigned long)result, time);
     NSDate *date = [NSDate date];
     GameResult *gameResult = [[GameResult alloc] initWithDate:date result:result andTime:time];
     [self.gameResults addObject:gameResult];

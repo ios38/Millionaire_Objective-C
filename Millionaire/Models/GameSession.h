@@ -23,6 +23,8 @@ extern NSString* const trueAnswersCountUserInfoKey;
 
 @property (assign,nonatomic) Difficulty difficulty;
 @property (assign,nonatomic) NSUInteger trueAnswersCount;
+@property (assign,nonatomic) CGFloat averageAnswersTime;
+
 
 -(void)startGame:(UIViewController *)mainMenuController;
 

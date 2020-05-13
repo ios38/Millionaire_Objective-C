@@ -118,12 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				506ECA1924656E5D0005469A /* Main.storyboard */,
-				506ECA62246581C60005469A /* MainMenuController.h */,
-				506ECA63246581C60005469A /* MainMenuController.m */,
-				506ECA66246585C80005469A /* GameController.h */,
-				506ECA67246585C80005469A /* GameController.m */,
-				506ECA772466DFC20005469A /* ResultsController.h */,
-				506ECA782466DFC20005469A /* ResultsController.m */,
+				50DF3F23246BFFC90007760B /* Controllers */,
 				506ECA65246582210005469A /* Models */,
 				50733A9B246AF29F00B24AA8 /* Patterns */,
 				50733A9A246AF21400B24AA8 /* Views */,
@@ -189,6 +184,19 @@
 				50DF3F21246BFD690007760B /* GameDifficultyFacade.m */,
 			);
 			path = Patterns;
+			sourceTree = "<group>";
+		};
+		50DF3F23246BFFC90007760B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				506ECA62246581C60005469A /* MainMenuController.h */,
+				506ECA63246581C60005469A /* MainMenuController.m */,
+				506ECA66246585C80005469A /* GameController.h */,
+				506ECA67246585C80005469A /* GameController.m */,
+				506ECA772466DFC20005469A /* ResultsController.h */,
+				506ECA782466DFC20005469A /* ResultsController.m */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		A8737745EBA168F4F5079910 /* Pods */ = {

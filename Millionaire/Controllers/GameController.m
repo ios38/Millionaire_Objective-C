@@ -83,9 +83,10 @@
 
         self.questionAndAnswers = questionAndAnswers;
         self.trueAnswer = [questionAndAnswers.answers objectAtIndex:0];
+        NSMutableArray *array = [(NSArray *)questionAndAnswers.answers mutableCopy];
         //NSMutableArray *array = self.questionAndAnswers.answers;
-        //[self shuffle:array];
-        //self.questionAndAnswers.answers = array;
+        [self shuffle:array];
+        self.questionAndAnswers.answers = array;
         self.QuestionLabel.text = self.questionAndAnswers.question;
         [self startTimer];
         [self.tableView reloadData];
@@ -168,19 +169,33 @@
     NSString *randomAnswer = [falseAnswers objectAtIndex:arc4random_uniform((u_int32_t)[falseAnswers count])];
     self.questionAndAnswers.answers = [NSMutableArray arrayWithObjects:self.trueAnswer,randomAnswer,nil];
     //добавить shuffle
+    [self.fiftyFiftyButton setHidden:YES];
     [self.tableView reloadData];
 }
 
 -(void) gameCompletion {
     dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self findTrueAnswer] inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor greenColor];
+    
     dispatch_after(delayTime, dispatch_get_main_queue(), ^{
         cell.backgroundColor = [UIColor blackColor];
-        [self.gameDelegate didEndGame];
-        [self dismissViewControllerAnimated:NO completion:nil];
+        [self endGameAlert];
+        //[self.gameDelegate didEndGame];
+        //[self dismissViewControllerAnimated:NO completion:nil];
     });
+}
+
+- (NSInteger) findTrueAnswer {
+    NSInteger trueAnswerIndex = 0;
+    for (int i = 0; i < [self.questionAndAnswers.answers count]; i++) {
+        if ([[self.questionAndAnswers.answers objectAtIndex:i] isEqual:self.trueAnswer]) {
+            trueAnswerIndex = i;
+            break;
+        }
+    }
+    return trueAnswerIndex;
 }
 
 -(void) startTimer {
@@ -196,6 +211,21 @@
         [self.countdownTimer invalidate];
         [self gameCompletion];
     }
+}
+
+- (void)endGameAlert {
+    NSString *alertMessage = [NSString stringWithFormat:@"Правильных ответов: %lu \n Cреднее время ответа %.1f сек",Game.shared.gameSession.trueAnswersCount,Game.shared.gameSession.averageAnswersTime];
+    
+    UIAlertController *alert  = [UIAlertController alertControllerWithTitle:@"Игра окончена!" message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * action) {
+        [self.gameDelegate didEndGame];
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }];
+     
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

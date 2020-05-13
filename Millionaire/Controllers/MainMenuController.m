@@ -52,7 +52,7 @@
 }
 
 - (IBAction)testButton:(id)sender {
-
+    //кнопочка для тестов
 }
 
 - (void) startGameSession {
