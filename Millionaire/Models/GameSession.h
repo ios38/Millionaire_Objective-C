@@ -15,6 +15,10 @@ typedef enum {
     easy,medium,hard,insane
 } Difficulty;
 
+extern NSString* const trueAnswersCountNotification;
+extern NSString* const trueAnswersCountUserInfoKey;
+
+
 @interface GameSession : NSObject <GameDelegate>
 
 @property (assign,nonatomic) Difficulty difficulty;

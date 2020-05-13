@@ -9,12 +9,8 @@
 #import "GameSession.h"
 #import "Game.h"
 
-
-@interface GameSession ()
-
-//@property (assign,nonatomic) NSUInteger trueAnswersCount;
-
-@end
+NSString* const trueAnswersCountNotification = @"trueAnswersCountNotification";
+NSString* const trueAnswersCountUserInfoKey =@"trueAnswersCountUserInfoKey";
 
 @implementation GameSession
 
@@ -38,6 +34,14 @@
     UIViewController *gameController = [storyboard instantiateViewControllerWithIdentifier:@"GameController"];
     gameController.modalPresentationStyle = UIModalPresentationFullScreen;
     [mainMenuController presentViewController:gameController animated:NO completion:nil];
+}
+
+- (void) setTrueAnswersCount:(NSUInteger)trueAnswersCount {
+    _trueAnswersCount = trueAnswersCount;
+    
+    NSDictionary* dictionary = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInteger:trueAnswersCount] forKey:trueAnswersCountUserInfoKey];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:trueAnswersCountNotification object:nil userInfo:dictionary];
 }
 
 - (void) trueAnswer {

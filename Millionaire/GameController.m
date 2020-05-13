@@ -10,6 +10,7 @@
 #import "NetworkService.h"
 #import "QuestionAndAnswers.h"
 #import "Game.h"
+#import "GameSession.h"
 #import "QuestionStrategy.h"
 #import "TimeStrategy.h"
 
@@ -24,6 +25,7 @@
 
 @interface GameController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
 @property (weak, nonatomic) IBOutlet UILabel *questionDifficulty;
 @property (weak, nonatomic) IBOutlet UILabel *QuestionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *trueAnswersCountLabel;
@@ -31,10 +33,9 @@
 
 @property (weak, nonatomic) id <GameDelegate> gameDelegate;
 
-//@property (assign,nonatomic) int questionsType;
 @property (strong,nonatomic) QuestionAndAnswers *questionAndAnswers;
 @property (strong,nonatomic) NSString *trueAnswer;
-@property (assign,nonatomic) NSUInteger trueAnswersCount;
+//@property (assign,nonatomic) NSUInteger trueAnswersCount;
 
 @property (strong, nonatomic) NSTimer *countdownTimer;
 @property (assign, nonatomic) NSInteger currentCountdown;
@@ -42,22 +43,31 @@
 @property (strong, nonatomic) QuestionStrategy *questionStrategy;
 @property (strong, nonatomic) TimeStrategy *timeStrategy;
 
+@property (strong, nonatomic) NSNotificationCenter *nc;
+
 @end
 
 @implementation GameController
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.questionsType = 1;
     self.questionStrategy = [[QuestionStrategy alloc] init];
     self.timeStrategy = [[TimeStrategy alloc] init];
+    self.nc = [NSNotificationCenter defaultCenter];
     self.questionAndAnswers = [[QuestionAndAnswers alloc] init];
     self.QuestionLabel.text = self.questionAndAnswers.question;
     self.questionDifficulty.text = @"Уровень сложности: 1";
     self.trueAnswersCountLabel.text = @"Правильных ответов: 0";
     [self.fiftyFiftyButton addTarget:self action:@selector(fiftyFiftyAnswers) forControlEvents:UIControlEventTouchUpInside];
     self.gameDelegate = Game.shared.gameSession;
+    [self.nc addObserver:self selector:@selector(trueAnswersCountNotification:) name:trueAnswersCountNotification object:nil];
     [self getQuestion];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - API
@@ -113,7 +123,7 @@
         //NSLog(@"Правильный ответ!");
         [self.countdownTimer invalidate];
         [self.gameDelegate trueAnswer];
-        self.trueAnswersCount++;
+        //self.trueAnswersCount++;
         //cell.backgroundColor = [UIColor trueAnswerColor];
         cell.backgroundColor = [UIColor greenColor];
         dispatch_after(delayAfterTrue, dispatch_get_main_queue(), ^{
@@ -134,16 +144,23 @@
 }
 
 #pragma mark - Setters
-
+/*
 - (void)setTrueAnswersCount:(NSUInteger)trueAnswersCount {
     _trueAnswersCount = trueAnswersCount;
     self.trueAnswersCountLabel.text = [NSString stringWithFormat:@"Правильных ответов: %lu", (unsigned long)self.trueAnswersCount];
 }
-/*
+
 - (void)setQuestionsType:(int)questionsType {
     _questionsType = questionsType;
     self.questionDifficulty.text = [NSString stringWithFormat:@"Уровень сложности: %d", self.questionsType];
 }*/
+
+#pragma mark - Notifications
+
+- (void) trueAnswersCountNotification:(NSNotification*) notification {
+    NSNumber* value = [notification.userInfo objectForKey:trueAnswersCountUserInfoKey];
+    self.trueAnswersCountLabel.text = [NSString stringWithFormat:@"Правильных ответов: %@",value];
+}
 
 #pragma mark - Other methods
 
