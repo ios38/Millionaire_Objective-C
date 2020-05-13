@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol GameDelegate
 
-- (void) trueAnswer;
+- (void) trueAnswerWithTime:(NSUInteger)answerTime;
 - (void) didEndGame;
 
 @end

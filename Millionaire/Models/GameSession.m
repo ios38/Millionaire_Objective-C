@@ -12,6 +12,12 @@
 NSString* const trueAnswersCountNotification = @"trueAnswersCountNotification";
 NSString* const trueAnswersCountUserInfoKey =@"trueAnswersCountUserInfoKey";
 
+@interface GameSession ()
+
+@property (assign, nonatomic) NSUInteger totalAnswersTime;
+
+@end
+
 @implementation GameSession
 
 - (instancetype) init {
@@ -44,13 +50,15 @@ NSString* const trueAnswersCountUserInfoKey =@"trueAnswersCountUserInfoKey";
     [[NSNotificationCenter defaultCenter] postNotificationName:trueAnswersCountNotification object:nil userInfo:dictionary];
 }
 
-- (void) trueAnswer {
+- (void) trueAnswerWithTime:(NSUInteger)answerTime {
     self.trueAnswersCount += 1;
+    self.totalAnswersTime += answerTime;
 }
 
 - (void) didEndGame {
-    NSLog(@"GameSession: didEndGame with result: %lu",(unsigned long)self.trueAnswersCount);
-    [Game.shared endGameWithResult:self.trueAnswersCount];
+    CGFloat averageTime = (CGFloat)self.totalAnswersTime / (CGFloat)self.trueAnswersCount;
+    //NSLog(@"GameSession: didEndGame with result: %lu and average time: %f seconds",(unsigned long)self.trueAnswersCount, averageTime);
+    [Game.shared endGameWithResult:self.trueAnswersCount andTime:averageTime];
 }
 
 @end

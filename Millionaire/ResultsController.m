@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     self.dateFormatter = [[NSDateFormatter alloc] init];
-    self.dateFormatter.dateFormat = @"dd.MM.yy hh-mm";
+    self.dateFormatter.dateFormat = @"dd.MMMM hh-mm";
 }
 
 - (IBAction)backButton:(id)sender {
@@ -43,7 +43,7 @@
     GameResult *gameResult = [Game.shared.gameResults objectAtIndex:indexPath.row];
     //NSLog(@"date = %@, result = %@", gameResult.date, gameResult.result);
     cell.textLabel.text = [self.dateFormatter stringFromDate:gameResult.date];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",gameResult.result];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu answ., %.2f sec avg",(unsigned long)gameResult.result,gameResult.time];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     return cell;
 }

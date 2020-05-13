@@ -7,15 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GameResult : NSObject <NSCoding>
+//@interface GameResult : NSObject <NSCoding>
+@interface GameResult : NSObject
 
 @property (strong,nonatomic) NSDate *date;
-@property (strong,nonatomic) NSNumber *result;
+@property (assign,nonatomic) NSUInteger result;
+@property (assign,nonatomic) CGFloat time;
 
-- (instancetype)initWithDate:(NSDate *)date andResult:(NSUInteger)result;
+- (instancetype)initWithDate:(NSDate *)date result:(NSUInteger)result andTime:(CGFloat)time;
 
 @end
 

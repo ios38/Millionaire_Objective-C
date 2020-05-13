@@ -41,17 +41,11 @@
     return self;
 }
 
-- (void) setGameResults:(NSMutableArray *)gameResults { //не срабатывает при gameResults addObject:
-    NSLog(@"Game: setGameResults");
-    _gameResults = gameResults;
-    [self.resultsCaretaker saveResults:gameResults];
-}
-
-- (void)endGameWithResult:(NSUInteger)result {
-    NSLog(@"Game: endGameWithResult: %lu",(unsigned long)result);
+- (void)endGameWithResult:(NSUInteger)result andTime:(CGFloat)time {
+    NSLog(@"Game: endGameWithResult: %lu and average time: %f seconds",(unsigned long)result, time);
     NSDate *date = [NSDate date];
-    GameResult *gameResult = [[GameResult alloc] initWithDate:date andResult:result];
-    [self.gameResults addObject:gameResult]; //не срабатывает сеттер для gameResults
+    GameResult *gameResult = [[GameResult alloc] initWithDate:date result:result andTime:time];
+    [self.gameResults addObject:gameResult];
     [self.resultsCaretaker saveResults:self.gameResults];
     self.gameSession = nil;
 }

@@ -11,15 +11,16 @@
 @implementation GameResult
 
 
-- (instancetype)initWithDate:(NSDate *)date andResult:(NSUInteger)result {
+- (instancetype)initWithDate:(NSDate *)date result:(NSUInteger)result andTime:(CGFloat)time {
     self = [super init];
     if (self) {
         self.date = date;
-        self.result = [NSNumber numberWithUnsignedInteger:result];
+        self.result = result;
+        self.time = time;
     }
     return self;
 }
-
+/*
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
     [coder encodeObject:self.date forKey:@"date"];
     [coder encodeObject:self.result forKey:@"date"];
@@ -31,6 +32,6 @@
         self.result = [coder decodeObjectForKey:@"result"];
     }
     return self;
-}
+}*/
 
 @end

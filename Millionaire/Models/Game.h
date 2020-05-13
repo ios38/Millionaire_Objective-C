@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (Game *) shared;
 
-- (void)endGameWithResult:(NSUInteger)result;
+//- (void)endGameWithResult:(NSUInteger)result;
+- (void)endGameWithResult:(NSUInteger)result andTime:(CGFloat)time;
 
 @end
 

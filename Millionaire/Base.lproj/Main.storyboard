@@ -192,7 +192,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="46g-Rt-6a2">
-                                <rect key="frame" x="40" y="123" width="334" height="648"/>
+                                <rect key="frame" x="30" y="123" width="354" height="648"/>
                                 <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="EDV-hy-fzp" id="Tuu-kz-NQ5"/>
@@ -206,8 +206,8 @@
                             <constraint firstItem="YUA-Ib-1cf" firstAttribute="top" secondItem="46g-Rt-6a2" secondAttribute="bottom" constant="20" id="0CU-rg-nDk"/>
                             <constraint firstItem="46g-Rt-6a2" firstAttribute="top" secondItem="8wb-HL-7ha" secondAttribute="bottom" constant="20" id="8Tb-7p-zMg"/>
                             <constraint firstItem="FoO-Ig-SL9" firstAttribute="bottom" secondItem="YUA-Ib-1cf" secondAttribute="bottom" constant="30" id="Hye-Mi-p1b"/>
-                            <constraint firstItem="46g-Rt-6a2" firstAttribute="leading" secondItem="FoO-Ig-SL9" secondAttribute="leading" constant="40" id="Q3X-Hc-ieX"/>
-                            <constraint firstItem="FoO-Ig-SL9" firstAttribute="trailing" secondItem="46g-Rt-6a2" secondAttribute="trailing" constant="40" id="SsI-aR-jyr"/>
+                            <constraint firstItem="46g-Rt-6a2" firstAttribute="leading" secondItem="FoO-Ig-SL9" secondAttribute="leading" constant="30" id="Q3X-Hc-ieX"/>
+                            <constraint firstItem="FoO-Ig-SL9" firstAttribute="trailing" secondItem="46g-Rt-6a2" secondAttribute="trailing" constant="30" id="SsI-aR-jyr"/>
                             <constraint firstItem="YUA-Ib-1cf" firstAttribute="leading" secondItem="FoO-Ig-SL9" secondAttribute="leading" constant="30" id="UtA-8d-PfI"/>
                             <constraint firstItem="8wb-HL-7ha" firstAttribute="leading" secondItem="FoO-Ig-SL9" secondAttribute="leading" constant="30" id="bBr-1O-B7G"/>
                             <constraint firstItem="FoO-Ig-SL9" firstAttribute="trailing" secondItem="YUA-Ib-1cf" secondAttribute="trailing" constant="30" id="wEW-nz-X7o"/>

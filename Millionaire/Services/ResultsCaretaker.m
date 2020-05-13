@@ -17,8 +17,8 @@ NSString *directory() {
 }
 
 -(void) saveResults:(NSMutableArray *)gameResults {
-    NSLog(@"ResultsCaretaker: saveResults");
-
+    //NSLog(@"ResultsCaretaker: saveResults does not work now!");
+    /*
     GameSettings *gameSettings = [[GameSettings alloc] init];
     gameSettings.gameResults = gameResults;
     
@@ -29,10 +29,11 @@ NSString *directory() {
     }
     [data writeToFile: directory() atomically:YES];
     NSLog(@"gameResults saved!");
+    */
 }
 
 -(void) loadResults {
-    NSLog(@"ResultsCaretaker: loadResults does not work now!");
+    //NSLog(@"ResultsCaretaker: loadResults does not work now!");
     //GameSettings *gameSettings = [NSKeyedUnarchiver unarchiveObjectWithFile:directory()];
     //
     //if(![gameSettings isEqual:[NSNull null]]) {

@@ -122,7 +122,8 @@
     if (cell.textLabel.text == self.trueAnswer) {
         //NSLog(@"Правильный ответ!");
         [self.countdownTimer invalidate];
-        [self.gameDelegate trueAnswer];
+        NSUInteger answerTime = [self.timeStrategy getCountdownDuration] - self.currentCountdown;
+        [self.gameDelegate trueAnswerWithTime:answerTime];
         //self.trueAnswersCount++;
         //cell.backgroundColor = [UIColor trueAnswerColor];
         cell.backgroundColor = [UIColor greenColor];
@@ -148,11 +149,6 @@
 - (void)setTrueAnswersCount:(NSUInteger)trueAnswersCount {
     _trueAnswersCount = trueAnswersCount;
     self.trueAnswersCountLabel.text = [NSString stringWithFormat:@"Правильных ответов: %lu", (unsigned long)self.trueAnswersCount];
-}
-
-- (void)setQuestionsType:(int)questionsType {
-    _questionsType = questionsType;
-    self.questionDifficulty.text = [NSString stringWithFormat:@"Уровень сложности: %d", self.questionsType];
 }*/
 
 #pragma mark - Notifications
@@ -166,7 +162,8 @@
 
 - (void)shuffle:(NSMutableArray *)array {
     for (NSUInteger i = [array count]; i > 1; i--) {
-        [array exchangeObjectAtIndex: i - 1 withObjectAtIndex:arc4random_uniform((u_int32_t)i)];
+        NSUInteger x = arc4random_uniform((u_int32_t)i);
+        [array exchangeObjectAtIndex: i - 1 withObjectAtIndex:x];
     }
 }
 
@@ -197,7 +194,8 @@
 }
 
 -(void) handleCountdown {
-    NSLog(@"Timer: %ld", (long)self.currentCountdown);
+    //NSLog(@"Timer: %ld", (long)self.currentCountdown);
+    self.countdownLabel.text = [NSString stringWithFormat:@"%ld",(long)self.currentCountdown];
     self.currentCountdown -= 1;
     if (self.currentCountdown == -1) {
         [self.countdownTimer invalidate];
