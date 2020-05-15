@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ResultsCaretaker : NSObject
 
 -(void) saveResults:(NSMutableArray *)gameResults;
--(void) loadResults;
+-(NSMutableArray *) loadResults;
 
 @end
 

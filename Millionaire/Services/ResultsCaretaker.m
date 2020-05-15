@@ -8,39 +8,54 @@
 
 #import "ResultsCaretaker.h"
 #import "Game.h"
+#import "GameResult.h"
 #import "GameSettings.h"
 
 @implementation ResultsCaretaker
 
-NSString *directory() {
-    return [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:@"/GameResults.txt"];
+NSString *filePath() {
+    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:@"/GameResults"];
+    //NSLog(@"%@",filePath);
+    return filePath;
 }
 
 -(void) saveResults:(NSMutableArray *)gameResults {
-    //NSLog(@"ResultsCaretaker: saveResults does not work now!");
-    /*
-    GameSettings *gameSettings = [[GameSettings alloc] init];
-    gameSettings.gameResults = gameResults;
+    NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
+    if (gameResults != nil) {
+        [dataDict setObject:gameResults forKey:@"gameResults"];
+    }
     
     NSError *error;
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameSettings requiringSecureCoding:NO error:&error];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dataDict requiringSecureCoding:NO error:&error];
     if (error) {
         NSLog(@"%@",error);
     }
-    [data writeToFile: directory() atomically:YES];
+    [data writeToFile: filePath() atomically:YES];
     NSLog(@"gameResults saved!");
-    */
 }
 
--(void) loadResults {
-    //NSLog(@"ResultsCaretaker: loadResults does not work now!");
-    //GameSettings *gameSettings = [NSKeyedUnarchiver unarchiveObjectWithFile:directory()];
-    //
-    //if(![gameSettings isEqual:[NSNull null]]) {
-    //    Game.shared.gameResults = gameSettings.gameResults;
-    //    NSLog(@"gameResults loaded!");
-    //}
+-(NSMutableArray *) loadResults {
+    NSMutableArray *gameResults = [NSMutableArray array];
+    NSError *error;
+    NSData *data = [NSData dataWithContentsOfFile:filePath()];
     
+    //NSDictionary *dataDict = NSKeyedUnarchiver unarchivedObjectOfClass:<#(nonnull Class)#> fromData:data error:&error;
+    NSDictionary *dataDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+
+    if (error) {
+        NSLog(@"%@",error);
+    }
+
+    if ([dataDict objectForKey:@"gameResults"] != nil) {
+        NSMutableArray *results = [[NSMutableArray alloc] initWithArray:[dataDict objectForKey:@"gameResults"]];
+        if ([results.lastObject isKindOfClass:[GameResult class]]) {
+            NSLog(@"I'm GameResult");
+        } else {
+            NSLog(@"I'm not GameResult!");
+        }
+        gameResults = results;
+    }
+    return gameResults;
 }
 
 @end

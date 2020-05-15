@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MainMenuController : UIViewController
 
-- (void)endGameAlert:(NSUInteger)result andTime:(CGFloat)time;
+//- (void)endGameAlert:(NSUInteger)result andTime:(CGFloat)time;
 
 @end
 

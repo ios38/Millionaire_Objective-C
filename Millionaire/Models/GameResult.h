@@ -11,12 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-//@interface GameResult : NSObject <NSCoding>
-@interface GameResult : NSObject
+@interface GameResult : NSObject <NSCoding>
+//@interface GameResult : NSObject
 
 @property (strong,nonatomic) NSDate *date;
-@property (assign,nonatomic) NSUInteger result;
-@property (assign,nonatomic) CGFloat time;
+@property (assign,nonatomic) NSNumber *result;
+@property (assign,nonatomic) NSNumber *time;
 
 - (instancetype)initWithDate:(NSDate *)date result:(NSUInteger)result andTime:(CGFloat)time;
 

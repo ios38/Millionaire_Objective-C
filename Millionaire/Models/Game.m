@@ -36,7 +36,7 @@
     if (self) {
         self.gameResults = [NSMutableArray array];
         self.resultsCaretaker = [[ResultsCaretaker alloc] init];
-        [self.resultsCaretaker loadResults];
+        self.gameResults = [self.resultsCaretaker loadResults];
     }
     return self;
 }

@@ -41,9 +41,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"resultCell"];
     GameResult *gameResult = [Game.shared.gameResults objectAtIndex:indexPath.row];
-    //NSLog(@"date = %@, result = %@", gameResult.date, gameResult.result);
     cell.textLabel.text = [self.dateFormatter stringFromDate:gameResult.date];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu answ., %.2f sec avg",(unsigned long)gameResult.result,gameResult.time];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ answ., %@ sec avg",gameResult.result,gameResult.time];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     return cell;
 }
