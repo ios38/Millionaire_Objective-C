@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GameDifficultyFacade : NSObject
 
-- (NSUInteger) getQuestionType;
+- (NSNumber *) getQuestionType;
 - (NSUInteger) getCountdownDuration;
 
 @end

@@ -35,11 +35,14 @@
                                 </subviews>
                             </stackView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnh-Gs-xqF">
-                                <rect key="frame" x="188.5" y="518" width="37" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Test">
+                                <rect key="frame" x="175.5" y="518" width="63" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Test API">
                                     <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="testButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Iq-y2-qtQ"/>
+                                </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pGU-PZ-vGt">
                                 <rect key="frame" x="40" y="84" width="334" height="32"/>
@@ -50,12 +53,22 @@
                                     <segment title="Insane"/>
                                 </segments>
                             </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="q58-mw-WCp">
+                                <rect key="frame" x="40" y="791" width="334" height="32"/>
+                                <segments>
+                                    <segment title="Russian"/>
+                                    <segment title="English"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="pGU-PZ-vGt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="1nm-lE-QWZ"/>
+                            <constraint firstItem="q58-mw-WCp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="5H5-da-gxo"/>
                             <constraint firstItem="gnh-Gs-xqF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ger-uC-jlK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="q58-mw-WCp" secondAttribute="trailing" constant="40" id="JGa-uQ-QQK"/>
                             <constraint firstItem="pGU-PZ-vGt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Lhr-K3-ccc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="q58-mw-WCp" secondAttribute="bottom" constant="40" id="PDE-H9-dmP"/>
                             <constraint firstItem="gnh-Gs-xqF" firstAttribute="top" secondItem="4za-a7-qOS" secondAttribute="bottom" constant="84" id="mYb-EI-pTn"/>
                             <constraint firstItem="3Sx-jM-HRU" firstAttribute="top" secondItem="pGU-PZ-vGt" secondAttribute="bottom" constant="200" id="ndh-8O-cX5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pGU-PZ-vGt" secondAttribute="trailing" constant="40" id="rNM-0S-KEh"/>
@@ -65,6 +78,7 @@
                     </view>
                     <connections>
                         <outlet property="difficultySegmentedControl" destination="pGU-PZ-vGt" id="KhE-Me-SAW"/>
+                        <outlet property="languageSegmentedControl" destination="q58-mw-WCp" id="wgx-pJ-WUW"/>
                         <outlet property="resultsButton" destination="4za-a7-qOS" id="ANE-EL-7ZQ"/>
                         <outlet property="startButton" destination="Acd-Ri-lta" id="hly-jP-bMh"/>
                     </connections>

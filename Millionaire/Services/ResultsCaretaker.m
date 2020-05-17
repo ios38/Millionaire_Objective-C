@@ -9,7 +9,6 @@
 #import "ResultsCaretaker.h"
 #import "Game.h"
 #import "GameResult.h"
-#import "GameSettings.h"
 
 @implementation ResultsCaretaker
 
@@ -20,13 +19,14 @@ NSString *filePath() {
 }
 
 -(void) saveResults:(NSMutableArray *)gameResults {
+    /*
     NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
     if (gameResults != nil) {
         [dataDict setObject:gameResults forKey:@"gameResults"];
-    }
+    }*/
     
     NSError *error;
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dataDict requiringSecureCoding:NO error:&error];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:gameResults requiringSecureCoding:NO error:&error];
     if (error) {
         NSLog(@"%@",error);
     }
@@ -38,22 +38,20 @@ NSString *filePath() {
     NSMutableArray *gameResults = [NSMutableArray array];
     NSError *error;
     NSData *data = [NSData dataWithContentsOfFile:filePath()];
-    
-    //NSDictionary *dataDict = NSKeyedUnarchiver unarchivedObjectOfClass:<#(nonnull Class)#> fromData:data error:&error;
-    NSDictionary *dataDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+      
+    if (data != nil) {
+        //NSSet *classes = [NSSet setWithObjects:[NSMutableArray class], [GameResult class], nil];
+        //NSMutableArray *results = [NSKeyedUnarchiver unarchivedObjectOfClass:[classes class] fromData:data error:&error];
 
-    if (error) {
-        NSLog(@"%@",error);
-    }
+        NSMutableArray *results = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 
-    if ([dataDict objectForKey:@"gameResults"] != nil) {
-        NSMutableArray *results = [[NSMutableArray alloc] initWithArray:[dataDict objectForKey:@"gameResults"]];
-        if ([results.lastObject isKindOfClass:[GameResult class]]) {
-            NSLog(@"I'm GameResult");
-        } else {
-            NSLog(@"I'm not GameResult!");
+        if (error) {
+            NSLog(@"%@",error);
         }
-        gameResults = results;
+
+        for (GameResult *result in results) {
+            [gameResults addObject:result];
+        }
     }
     return gameResults;
 }

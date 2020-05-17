@@ -33,29 +33,68 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        config.timeoutIntervalForRequest = 30;
+        self.manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:config];
         self.manager.responseSerializer.acceptableContentTypes= [NSSet setWithObjects:@"text/html", nil];
     }
     return self;
 }
-- (void) getQuestionWithType:(NSInteger) questionType
-                    onSuccess:(void(^)(QuestionAndAnswers *questionAndAnswers)) success
-                    onFailure:(void(^)(NSError *error)) failure {
-    
-    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:@1,@"q", nil];
 
+- (void) getQuestionFromLip2xyzWithType:(NSNumber *) questionType
+                              onSuccess:(void(^)(QuestionAndAnswers *questionAndAnswers)) success
+                              onFailure:(void(^)(NSError *error)) failure {
+    
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:questionType,@"q", nil];
+    
     [self.manager GET:@"https://lip2.xyz/api/millionaire.php" parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * task, NSDictionary * responseObject) {
-        
+
+        NSLog(@"https://lip2.xyz/api/millionaire.php Success");
+
         NSDictionary *dict = [responseObject objectForKey:@"data"];
         QuestionAndAnswers *questionAndAnswers = [[QuestionAndAnswers alloc] initWithServerResponse:dict];
-
+     
         if (success) {
             success(questionAndAnswers);
         }
+        
+    } failure:^(NSURLSessionDataTask * task, NSError * error) {
+        NSLog(@"https://lip2.xyz/api/millionaire.php Failure");
+        //NSLog(@"error: %@", [error localizedDescription]);
+        if (failure) {
+            failure(error);
+        }
+    }];
+    
+}
+
+- (void) getQuestionFromOpentdbWithType:(NSString *) questionType
+                    onSuccess:(void(^)(QuestionFromOpentdb *questionFromOpentdb)) success
+                    onFailure:(void(^)(NSError *error)) failure {
+
+    self.manager.responseSerializer.acceptableContentTypes= [NSSet setWithObjects:@"application/json", nil];
+    
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                @1,@"amount",
+                                @18,@"category",
+                                questionType,@"difficulty",
+                                @"multiple",@"type",
+                                nil];
+
+    [self.manager GET:@"https://opentdb.com/api.php" parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * task, NSDictionary * responseObject) {
+        NSLog(@"https://opentdb.com/api.php Success");
+        //NSLog(@"%@",responseObject);
+        NSArray *array = [responseObject objectForKey:@"results"];
+        QuestionFromOpentdb *questionFromOpentdb = [[QuestionFromOpentdb alloc] initWithServerResponse:[array firstObject]];
+        NSLog(@"%@",questionFromOpentdb.difficulty);
+        
+        if (success) {
+            success(questionFromOpentdb);
+        }
 
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        //NSLog(@"Error: %@", error);
-        NSLog(@"error: %@", [error localizedDescription]);
+        NSLog(@"https://opentdb.com/api.php Failure");
+        //NSLog(@"error: %@", [error localizedDescription]);
         if (failure) {
             failure(error);
         }

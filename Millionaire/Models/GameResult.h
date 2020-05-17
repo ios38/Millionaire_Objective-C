@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong,nonatomic) NSDate *date;
 @property (assign,nonatomic) NSNumber *result;
-@property (assign,nonatomic) NSNumber *time;
+@property (assign,nonatomic) NSNumber * time;
 
 - (instancetype)initWithDate:(NSDate *)date result:(NSUInteger)result andTime:(CGFloat)time;
 

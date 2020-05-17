@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "QuestionAndAnswers.h"
+#import "QuestionFromOpentdb.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,10 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NetworkService *) shared;
 
-- (void) getQuestionWithType:(NSInteger) questionType
+- (void) getQuestionFromLip2xyzWithType:(NSNumber *) questionType
               onSuccess:(void(^)(QuestionAndAnswers *questionAndAnswers)) success
               onFailure:(void(^)(NSError *error)) failure;
 
+- (void) getQuestionFromOpentdbWithType:(NSString *) questionType
+                              onSuccess:(void(^)(QuestionFromOpentdb *questionFromOpentdb)) success
+                              onFailure:(void(^)(NSError *error)) failure;
 
 @end
 

@@ -7,22 +7,14 @@
 //
 
 #import "GameController.h"
-#import "NetworkService.h"
+//#import "NetworkService.h"
 #import "QuestionAndAnswers.h"
 #import "Game.h"
 #import "GameSession.h"
 #import "QuestionStrategy.h"
 #import "TimeStrategy.h"
 #import "GameDifficultyFacade.h"
-
-@implementation UIColor (Layout)
-
-+ (UIColor *) trueAnswerColor {
-    UIColor *color = [UIColor colorWithRed:0/255 green:100/255 blue:0/255 alpha:1];
-    return color;
-}
-
-@end
+#import "QuestionAdapter.h"
 
 @interface GameController ()
 
@@ -47,6 +39,10 @@
 
 @property (strong, nonatomic) NSNotificationCenter *nc;
 
+@property (strong, nonatomic) UIColor *trueAnswerColor;
+@property (strong, nonatomic) UIColor *falseAnswerColor;
+
+
 @end
 
 @implementation GameController
@@ -63,6 +59,8 @@
     self.QuestionLabel.text = self.questionAndAnswers.question;
     self.questionDifficulty.text = @"Уровень сложности: 1";
     self.trueAnswersCountLabel.text = @"Правильных ответов: 0";
+    self.trueAnswerColor = [UIColor colorWithRed:0.0/255.0 green:100.0/255.0 blue:0.0/255.0 alpha:1.0];
+    self.falseAnswerColor = [UIColor colorWithRed:100.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1.0];
     [self.fiftyFiftyButton addTarget:self action:@selector(fiftyFiftyAnswers) forControlEvents:UIControlEventTouchUpInside];
     self.gameDelegate = Game.shared.gameSession;
     [self.nc addObserver:self selector:@selector(trueAnswersCountNotification:) name:trueAnswersCountNotification object:nil];
@@ -76,9 +74,11 @@
 #pragma mark - API
 
 - (void) getQuestion {
-    NSUInteger questionType = [self.gameDifficulty getQuestionType];
-    self.questionDifficulty.text = [NSString stringWithFormat:@"Уровень сложности: %lu", (unsigned long)questionType];
-    [[NetworkService shared] getQuestionWithType:questionType
+    NSNumber *questionType = [self.gameDifficulty getQuestionType];
+    self.questionDifficulty.text = [NSString stringWithFormat:@"Уровень сложности: %@", questionType];
+    
+    [QuestionAdapter getQuestionWithType:questionType 
+    //[[NetworkService shared] getQuestionWithType:questionType
       onSuccess:^(QuestionAndAnswers *questionAndAnswers) {
 
         self.questionAndAnswers = questionAndAnswers;
@@ -92,9 +92,7 @@
         [self.tableView reloadData];
     }
       onFailure:^(NSError *error) {
-        //NSLog(@"error: %@", [error localizedDescription]);
-        self.trueAnswer = [self.questionAndAnswers.answers objectAtIndex:0];
-        [self startTimer];
+        [self errorAlertWithError:error];
 
     }];
 }
@@ -128,8 +126,7 @@
         [self.countdownTimer invalidate];
         NSUInteger answerTime = [self.gameDifficulty getCountdownDuration] - self.currentCountdown;
         [self.gameDelegate trueAnswerWithTime:answerTime];
-        //cell.backgroundColor = [UIColor trueAnswerColor];
-        cell.backgroundColor = [UIColor greenColor];
+        cell.backgroundColor = self.trueAnswerColor;
         dispatch_after(delayAfterTrue, dispatch_get_main_queue(), ^{
             cell.backgroundColor = [UIColor blackColor];
             [self getQuestion];
@@ -139,7 +136,7 @@
     } else {
         //NSLog(@"Неправильный ответ!");
         [self.countdownTimer invalidate];
-        cell.backgroundColor = [UIColor redColor];
+        cell.backgroundColor = self.falseAnswerColor;
         dispatch_after(delayAfterFalse, dispatch_get_main_queue(), ^{
             cell.backgroundColor = [UIColor blackColor];
             [self gameCompletion];
@@ -177,7 +174,7 @@
     dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self findTrueAnswer] inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor greenColor];
+    cell.backgroundColor = self.trueAnswerColor;
     
     dispatch_after(delayTime, dispatch_get_main_queue(), ^{
         cell.backgroundColor = [UIColor blackColor];
@@ -214,9 +211,24 @@
 }
 
 - (void)endGameAlert {
-    NSString *alertMessage = [NSString stringWithFormat:@"Правильных ответов: %lu \n Cреднее время ответа %.1f сек",Game.shared.gameSession.trueAnswersCount,Game.shared.gameSession.averageAnswersTime];
+    NSString *alertMessage = [NSString stringWithFormat:@"Правильных ответов: %lu \n Cреднее время ответа %.0f сек",Game.shared.gameSession.trueAnswersCount,Game.shared.gameSession.averageAnswersTime];
     
     UIAlertController *alert  = [UIAlertController alertControllerWithTitle:@"Игра окончена!" message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * action) {
+        [self.gameDelegate didEndGame];
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }];
+     
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)errorAlertWithError:(NSError *)error {
+    NSString *alertMessage = [NSString stringWithFormat:@"%@", [error localizedDescription]];
+    
+    UIAlertController *alert  = [UIAlertController alertControllerWithTitle:@"Ошибка загрузки данных!" message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
        handler:^(UIAlertAction * action) {

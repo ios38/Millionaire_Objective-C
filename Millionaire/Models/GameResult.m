@@ -16,7 +16,7 @@
     if (self) {
         self.date = date;
         self.result = [NSNumber numberWithUnsignedInteger:result];
-        self.time = [NSNumber numberWithFloat:(float)time];
+        self.time = [NSNumber numberWithUnsignedInteger:(NSUInteger)time];
     }
     return self;
 }
