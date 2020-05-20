@@ -8,6 +8,7 @@
 
 #import "GameSession.h"
 #import "Game.h"
+#import "Logger.h"
 
 NSString* const trueAnswersCountNotification = @"trueAnswersCountNotification";
 NSString* const trueAnswersCountUserInfoKey =@"trueAnswersCountUserInfoKey";
@@ -24,13 +25,14 @@ NSString* const trueAnswersCountUserInfoKey =@"trueAnswersCountUserInfoKey";
     self = [super init];
     if (self) {
         self.trueAnswersCount = 0;
-        NSLog(@"GameSession created");
+        [Logger.shared didAction:startGameSession];
+        //NSLog(@"GameSession created");
     }
     return self;
 }
 
 - (void) dealloc {
-    NSLog(@"GameSession deallocated");
+    //NSLog(@"GameSession deallocated");
 }
 
 -(void)startGame:(UIViewController *)mainMenuController {    

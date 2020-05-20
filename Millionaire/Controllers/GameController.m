@@ -15,6 +15,7 @@
 #import "TimeStrategy.h"
 #import "GameDifficultyFacade.h"
 #import "QuestionAdapter.h"
+#import "Logger.h"
 
 @interface GameController ()
 
@@ -125,6 +126,7 @@
         //NSLog(@"Правильный ответ!");
         [self.countdownTimer invalidate];
         NSUInteger answerTime = [self.gameDifficulty getCountdownDuration] - self.currentCountdown;
+        [Logger.shared didAction:trueAnswer];
         [self.gameDelegate trueAnswerWithTime:answerTime];
         cell.backgroundColor = self.trueAnswerColor;
         dispatch_after(delayAfterTrue, dispatch_get_main_queue(), ^{

@@ -31,7 +31,7 @@ NSString *filePath() {
         NSLog(@"%@",error);
     }
     [data writeToFile: filePath() atomically:YES];
-    NSLog(@"gameResults saved!");
+    //NSLog(@"gameResults saved!");
 }
 
 -(NSMutableArray *) loadResults {

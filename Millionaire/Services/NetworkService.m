@@ -49,7 +49,7 @@
     
     [self.manager GET:@"https://lip2.xyz/api/millionaire.php" parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * task, NSDictionary * responseObject) {
 
-        NSLog(@"https://lip2.xyz/api/millionaire.php Success");
+        //NSLog(@"https://lip2.xyz/api/millionaire.php Success");
 
         NSDictionary *dict = [responseObject objectForKey:@"data"];
         QuestionAndAnswers *questionAndAnswers = [[QuestionAndAnswers alloc] initWithServerResponse:dict];
@@ -82,7 +82,7 @@
                                 nil];
 
     [self.manager GET:@"https://opentdb.com/api.php" parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * task, NSDictionary * responseObject) {
-        NSLog(@"https://opentdb.com/api.php Success");
+        //NSLog(@"https://opentdb.com/api.php Success");
         //NSLog(@"%@",responseObject);
         NSArray *array = [responseObject objectForKey:@"results"];
         QuestionFromOpentdb *questionFromOpentdb = [[QuestionFromOpentdb alloc] initWithServerResponse:[array firstObject]];

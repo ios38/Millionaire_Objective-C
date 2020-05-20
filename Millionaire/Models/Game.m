@@ -9,6 +9,7 @@
 #import "Game.h"
 #import "GameResult.h"
 #import "ResultsCaretaker.h"
+#import "Logger.h"
 
 @interface Game()
 
@@ -47,6 +48,7 @@
     GameResult *gameResult = [[GameResult alloc] initWithDate:date result:result andTime:time];
     [self.gameResults addObject:gameResult];
     [self.resultsCaretaker saveResults:self.gameResults];
+    [Logger.shared didAction:endGameSession];
     self.gameSession = nil;
 }
 
