@@ -10,6 +10,9 @@
 
 @implementation GameResult
 
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
 
 - (instancetype)initWithDate:(NSDate *)date result:(NSUInteger)result andTime:(CGFloat)time {
     self = [super init];

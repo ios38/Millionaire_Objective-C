@@ -40,11 +40,9 @@ NSString *filePath() {
     NSData *data = [NSData dataWithContentsOfFile:filePath()];
       
     if (data != nil) {
-        //NSSet *classes = [NSSet setWithObjects:[NSMutableArray class], [GameResult class], nil];
-        //NSMutableArray *results = [NSKeyedUnarchiver unarchivedObjectOfClass:[classes class] fromData:data error:&error];
-
-        NSMutableArray *results = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-
+        NSArray *objectClasses = @[[NSArray class], [GameResult class], [NSDate class]];
+        NSMutableArray *results = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithArray:objectClasses] fromData:data error:&error];
+        
         if (error) {
             NSLog(@"%@",error);
         }

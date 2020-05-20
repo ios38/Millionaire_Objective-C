@@ -11,8 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GameResult : NSObject <NSCoding>
-//@interface GameResult : NSObject
+@interface GameResult : NSObject <NSSecureCoding>
+//@interface GameResult : NSObject <NSCoding>
 
 @property (strong,nonatomic) NSDate *date;
 @property (assign,nonatomic) NSNumber *result;
