@@ -7,5 +7,7 @@ target 'Millionaire' do
 
   # Pods for Millionaire
   pod 'AFNetworking', '~> 4.0'
-
+  pod 'Realm', '~> 4.3.2'
+  pod 'Realm/Headers'
+  
 end

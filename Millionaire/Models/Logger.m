@@ -23,7 +23,7 @@
     
     dispatch_once(&onceToken, ^{
         logger = [[Logger alloc] init];
-        NSLog(@"Logger created");
+        //NSLog(@"Logger created");
     });
     
     return logger;

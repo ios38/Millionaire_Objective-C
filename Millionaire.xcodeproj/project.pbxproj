@@ -28,6 +28,8 @@
 		506ECA7F2467DBD00005469A /* ResultsCaretaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 506ECA7E2467DBD00005469A /* ResultsCaretaker.m */; };
 		50733A9E246AF42600B24AA8 /* QuestionStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50733A9D246AF42600B24AA8 /* QuestionStrategy.m */; };
 		50733AA4246B007200B24AA8 /* TimeStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50733AA3246B007200B24AA8 /* TimeStrategy.m */; };
+		508CE2E2247E44A9009540E6 /* RealmQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 508CE2E1247E44A9009540E6 /* RealmQuestion.m */; };
+		508CE2E5247E495D009540E6 /* RealmService.m in Sources */ = {isa = PBXBuildFile; fileRef = 508CE2E4247E495D009540E6 /* RealmService.m */; };
 		50B309792474ED370025AF42 /* LogCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B309782474ED370025AF42 /* LogCommand.m */; };
 		50B3097C2474F30D0025AF42 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B3097B2474F30D0025AF42 /* Logger.m */; };
 		50DF3F22246BFD690007760B /* GameDifficultyFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DF3F21246BFD690007760B /* GameDifficultyFacade.m */; };
@@ -75,6 +77,10 @@
 		50733A9D246AF42600B24AA8 /* QuestionStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuestionStrategy.m; sourceTree = "<group>"; };
 		50733AA2246B007200B24AA8 /* TimeStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeStrategy.h; sourceTree = "<group>"; };
 		50733AA3246B007200B24AA8 /* TimeStrategy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeStrategy.m; sourceTree = "<group>"; };
+		508CE2E0247E44A9009540E6 /* RealmQuestion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealmQuestion.h; sourceTree = "<group>"; };
+		508CE2E1247E44A9009540E6 /* RealmQuestion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealmQuestion.m; sourceTree = "<group>"; };
+		508CE2E3247E495D009540E6 /* RealmService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealmService.h; sourceTree = "<group>"; };
+		508CE2E4247E495D009540E6 /* RealmService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealmService.m; sourceTree = "<group>"; };
 		50B309772474ED370025AF42 /* LogCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogCommand.h; sourceTree = "<group>"; };
 		50B309782474ED370025AF42 /* LogCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogCommand.m; sourceTree = "<group>"; };
 		50B3097A2474F30D0025AF42 /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
@@ -156,6 +162,8 @@
 				506ECA752466D8540005469A /* GameSession.m */,
 				506ECA7A2467B6D80005469A /* GameResult.h */,
 				506ECA7B2467B6D80005469A /* GameResult.m */,
+				508CE2E0247E44A9009540E6 /* RealmQuestion.h */,
+				508CE2E1247E44A9009540E6 /* RealmQuestion.m */,
 				506ECA5D24656F130005469A /* QuestionAndAnswers.h */,
 				506ECA5E24656F130005469A /* QuestionAndAnswers.m */,
 				5065C792246FD9B400BC7841 /* QuestionFromOpentdb.h */,
@@ -173,6 +181,8 @@
 				506ECA7E2467DBD00005469A /* ResultsCaretaker.m */,
 				506ECA5F24656F130005469A /* NetworkService.h */,
 				506ECA5C24656F130005469A /* NetworkService.m */,
+				508CE2E3247E495D009540E6 /* RealmService.h */,
+				508CE2E4247E495D009540E6 /* RealmService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -346,6 +356,8 @@
 				5065C794246FD9B400BC7841 /* QuestionFromOpentdb.m in Sources */,
 				506ECA6024656F130005469A /* NetworkService.m in Sources */,
 				50733A9E246AF42600B24AA8 /* QuestionStrategy.m in Sources */,
+				508CE2E2247E44A9009540E6 /* RealmQuestion.m in Sources */,
+				508CE2E5247E495D009540E6 /* RealmService.m in Sources */,
 				506ECA6124656F130005469A /* QuestionAndAnswers.m in Sources */,
 				50DF3F22246BFD690007760B /* GameDifficultyFacade.m in Sources */,
 				5065C791246FD55300BC7841 /* QuestionAdapter.m in Sources */,
