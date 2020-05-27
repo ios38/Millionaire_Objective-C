@@ -16,6 +16,7 @@
 #import "GameDifficultyFacade.h"
 #import "QuestionAdapter.h"
 #import "Logger.h"
+#import "QuestionProxy.h"
 
 @interface GameController ()
 
@@ -43,6 +44,8 @@
 @property (strong, nonatomic) UIColor *trueAnswerColor;
 @property (strong, nonatomic) UIColor *falseAnswerColor;
 
+@property (strong, nonatomic) QuestionProxy *questionProxy;
+
 
 @end
 
@@ -65,6 +68,7 @@
     [self.fiftyFiftyButton addTarget:self action:@selector(fiftyFiftyAnswers) forControlEvents:UIControlEventTouchUpInside];
     self.gameDelegate = Game.shared.gameSession;
     [self.nc addObserver:self selector:@selector(trueAnswersCountNotification:) name:trueAnswersCountNotification object:nil];
+    self.questionProxy = [[QuestionProxy alloc] init];
     [self getQuestion];
 }
 
@@ -78,7 +82,8 @@
     NSNumber *questionType = [self.gameDifficulty getQuestionType];
     self.questionDifficulty.text = [NSString stringWithFormat:@"Уровень сложности: %@", questionType];
     
-    [QuestionAdapter getQuestionWithType:questionType 
+    [self.questionProxy getQuestionWithType:questionType
+    //[QuestionAdapter getQuestionWithType:questionType
     //[[NetworkService shared] getQuestionWithType:questionType
       onSuccess:^(QuestionAndAnswers *questionAndAnswers) {
 

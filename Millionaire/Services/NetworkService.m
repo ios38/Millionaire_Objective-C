@@ -59,7 +59,7 @@
         }
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        NSLog(@"https://lip2.xyz/api/millionaire.php Failure");
+        //NSLog(@"https://lip2.xyz/api/millionaire.php Failure");
         //NSLog(@"error: %@", [error localizedDescription]);
         if (failure) {
             failure(error);
@@ -93,7 +93,7 @@
         }
 
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        NSLog(@"https://opentdb.com/api.php Failure");
+        //NSLog(@"https://opentdb.com/api.php Failure");
         //NSLog(@"error: %@", [error localizedDescription]);
         if (failure) {
             failure(error);
